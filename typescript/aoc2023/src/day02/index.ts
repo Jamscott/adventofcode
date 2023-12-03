@@ -1,16 +1,15 @@
 import run from "aocrunner";
-import '../utils/helpers.js';
+import "../utils/helpers.js";
 
-const parseInput = (rawInput: string) => rawInput
-  .splitNewLines()
+const parseInput = (rawInput: string) => rawInput.splitNewLines();
 
-type BlockCollection = Map<string, number>[]
+type BlockCollection = Map<string, number>[];
 
 const limits: Record<string, number> = {
   red: 12,
   green: 13,
   blue: 14,
-}
+};
 
 class Game {
   id: number;
@@ -19,47 +18,47 @@ class Game {
 
   constructor(input: string) {
     this.input = input;
-    const [id, rounds] = input.split(':')
-    this.id = Number(id.replace(/\D/g, '')); 
+    const [id, rounds] = input.split(":");
+    this.id = Number(id.replace(/\D/g, ""));
     this.blocks = this.parseRounds(rounds);
   }
 
   private parseRounds(blocks: string): BlockCollection {
-    const rolls = blocks
-      .split(';')
-      .map((round) => round
-        .split(',')
+    const rolls = blocks.split(";").map((round) =>
+      round
+        .split(",")
         .map((roll) => roll.trim())
-        .map((roll) => roll.split(' ')))
-       
-    const blocksCollection = rolls
-      .map((round) => round
-      .reduce((acc, [number, colour]) => {
-        acc.set(colour, Number(number));
-        return acc;
-      }, new Map<string, number>()));
+        .map((roll) => roll.split(" ")),
+    );
 
-    return blocksCollection
+    const blocksCollection = rolls.map((round) =>
+      round.reduce((acc, [number, colour]) => {
+        return acc.set(colour, Number(number));
+      }, new Map<string, number>()),
+    );
+
+    return blocksCollection;
   }
 
   public isPossible() {
-    return this.blocks
-      .every((round) => Array.from(round.entries())
-      .every(([colour, number]) => number <= limits[colour]));
+    return this.blocks.every((round) =>
+      Array.from(round.entries()).every(
+        ([colour, number]) => number <= limits[colour],
+      ),
+    );
   }
 
   public power() {
-    const highestColours = this.blocks
-      .reduce((acc, round) => {
-        return acc.mergeHighestValue(round);
-      }, new Map<string, number>())
+    const highestColours = this.blocks.reduce((acc, round) => {
+      return acc.mergeHighestValue(round);
+    }, new Map<string, number>());
 
     return highestColours.powerValues();
   }
 }
 
 const part1 = (rawInput: string) => {
-  return parseInput(rawInput)  
+  return parseInput(rawInput)
     .map((line) => new Game(line))
     .filter((game) => game.isPossible())
     .map((game) => game.id)
@@ -70,7 +69,7 @@ const part2 = (rawInput: string) => {
   return parseInput(rawInput)
     .map((line) => new Game(line))
     .map((game) => game.power())
-    .sum()
+    .sum();
 };
 
 run({
