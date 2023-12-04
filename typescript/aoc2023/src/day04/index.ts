@@ -16,19 +16,17 @@ const matchNumber = (match: RegExp, text: string): number[] => {
 const winningNumberRegex = /(?<=: ).*(?= \|)/g;
 const elfsNumbersRegex = /(?<=\| ).*/g; 
 
-const processCard = (card: string) => {
-  const winningNumbers = matchNumber(winningNumberRegex, card)
-  const elfsNumbers = matchNumber(elfsNumbersRegex, card)
-  return [winningNumbers, elfsNumbers]
-}
+const processCard = (card: string) => [
+    matchNumber(winningNumberRegex, card), //winning numbers
+    matchNumber(elfsNumbersRegex, card) // elfs numbers
+]
 
 const part1 = (rawInput: string) => {
   return parseInput(rawInput)
-    .map((line) => {
-      const [winningNumbers, elfsNumbers] = processCard(line)
-      return elfsNumbers.reduce((acc, num) => acc + (winningNumbers.includes(num) ? 1 : 0), 0)
-    })
-    .reduce((acc, num) => num === 0 ? acc : acc + Math.pow(2, num - 1), 0)
+  .map((line) => processCard(line))
+    .map(([winningNumbers, elfsNumbers]) => elfsNumbers
+    .reduce((acc, num) => acc + (winningNumbers.includes(num) ? 1 : 0), 0))
+  .reduce((acc, num) => num === 0 ? acc : acc + Math.pow(2, num - 1), 0)
 };
 
 const part2 = (rawInput: string) => {
