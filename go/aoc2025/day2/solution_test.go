@@ -1,7 +1,7 @@
 package day2
 
 import (
-	"aoc2025/runner"
+	"aoc2025/utils"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -13,7 +13,7 @@ const (
 )
 
 func TestPart1(t *testing.T) {
-	input, err := runner.LoadInput("input1.txt")
+	input, err := utils.LoadInput("input1.txt")
 	if err != nil {
 		t.Fatalf("Failed to load input: %v", err)
 	}
@@ -27,7 +27,7 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-	input, err := runner.LoadInput("input2.txt")
+	input, err := utils.LoadInput("input2.txt")
 	if err != nil {
 		t.Fatalf("Failed to load input: %v", err)
 	}

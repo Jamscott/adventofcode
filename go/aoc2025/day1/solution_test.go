@@ -1,7 +1,7 @@
 package day1
 
 import (
-	"aoc2025/runner"
+	"aoc2025/utils"
 	"fmt"
 	"testing"
 
@@ -14,7 +14,7 @@ const (
 )
 
 func TestPart1(t *testing.T) {
-	input, err := runner.LoadInput("input1.txt")
+	input, err := utils.LoadInput("input1.txt")
 	if err != nil {
 		t.Fatalf("Failed to load input: %v", err)
 	}
@@ -28,7 +28,7 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-	input, err := runner.LoadInput("input2.txt")
+	input, err := utils.LoadInput("input2.txt")
 	if err != nil {
 		t.Fatalf("Failed to load input: %v", err)
 	}
@@ -42,7 +42,7 @@ func TestPart2(t *testing.T) {
 }
 
 func TestRunPart1(t *testing.T) {
-	input, err := runner.LoadInput("input.txt")
+	input, err := utils.LoadInput("input.txt")
 	if err != nil {
 		t.Fatalf("Failed to load input: %v", err)
 	}

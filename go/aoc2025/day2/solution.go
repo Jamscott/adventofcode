@@ -1,14 +1,15 @@
 package day2
 
 import (
-	"aoc2025/runner"
+	"aoc2025/utils"
 	"fmt"
 	"strconv"
 	"strings"
 )
 
 func Run() {
-	input, err := runner.LoadInput("day2/input.txt")
+	fmt.Println("Day 2")
+	input, err := utils.LoadInput("day2/input.txt")
 	if err != nil {
 		panic(fmt.Errorf("failed to load input: %w", err))
 	}

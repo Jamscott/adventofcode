@@ -1,4 +1,4 @@
-package runner
+package utils
 
 import (
 	"fmt"
@@ -6,8 +6,6 @@ import (
 	"strings"
 )
 
-// Loads the puzzle input from the given filename
-// Returns the input as a string
 func LoadInput(filename string) (string, error) {
 	data, err := os.ReadFile(filename)
 	if err != nil {
