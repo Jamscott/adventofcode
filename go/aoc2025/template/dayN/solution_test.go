@@ -1,4 +1,4 @@
-package day1
+package dayN
 
 import (
 	"aoc2025/solver"
@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	expectedPart1 = 3
+	expectedPart1 = 0
 	expectedPart2 = 0
 )
 

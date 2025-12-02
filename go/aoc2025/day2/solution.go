@@ -1,31 +1,17 @@
 package day2
 
 import (
-	"aoc2025/utils"
+	"aoc2025/solver"
 	"fmt"
 	"strconv"
 	"strings"
 )
 
-func Run() {
-	fmt.Println("Day 2")
-	input, err := utils.LoadInput("day2/input.txt")
-	if err != nil {
-		panic(fmt.Errorf("failed to load input: %w", err))
-	}
-
-	result, err := Part1(input)
-	if err != nil {
-		panic(fmt.Errorf("failed to run Part1: %w", err))
-	}
-	fmt.Printf("Part 1 Result: %d\n", result)
-
-	result, err = Part2(input)
-	if err != nil {
-		panic(fmt.Errorf("failed to run Part2: %w", err))
-	}
-	fmt.Printf("Part 2 Result: %d\n", result)
+func init() {
+	solver.Register(2, Solution{})
 }
+
+type Solution struct{}
 
 type numRange struct {
 	min int
@@ -123,12 +109,12 @@ func sumMatchingNumbers(ranges []numRange, predicate func(int) bool) int {
 	return sum
 }
 
-func Part1(input string) (int, error) {
+func (s Solution) Part1(input string) (int, error) {
 	ranges := parseInput(input)
 	return sumMatchingNumbers(ranges, hasRepeatingHalves), nil
 }
 
-func Part2(input string) (int, error) {
+func (s Solution) Part2(input string) (int, error) {
 	ranges := parseInput(input)
 	return sumMatchingNumbers(ranges, hasRepeatingPattern), nil
 }

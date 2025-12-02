@@ -1,41 +1,25 @@
 package day2
 
 import (
-	"aoc2025/utils"
+	"aoc2025/solver"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 const (
-	Expected_Answer_Part1 = 1227775554
-	Expected_Answer_Part2 = 4174379265
+	expectedPart1 = 1227775554
+	expectedPart2 = 4174379265
 )
 
-func TestPart1(t *testing.T) {
-	input, err := utils.LoadInput("input1.txt")
-	if err != nil {
-		t.Fatalf("Failed to load input: %v", err)
-	}
-
-	result, err := Part1(input)
-	if err != nil {
-		t.Fatalf("Failed to run Part1: %v", err)
-	}
-
-	assert.Equal(t, Expected_Answer_Part1, result)
+func TestSolution(t *testing.T) {
+	solver.RunTests(t, solver.TestConfig{
+		Solver:        Solution{},
+		Part1Expected: expectedPart1,
+		Part2Expected: expectedPart2,
+	})
 }
 
-func TestPart2(t *testing.T) {
-	input, err := utils.LoadInput("input2.txt")
-	if err != nil {
-		t.Fatalf("Failed to load input: %v", err)
-	}
-
-	result, err := Part2(input)
-	if err != nil {
-		t.Fatalf("Failed to run Part2: %v", err)
-	}
-
-	assert.Equal(t, Expected_Answer_Part2, result)
+func BenchmarkSolution(b *testing.B) {
+	solver.RunBenchmarks(b, solver.BenchmarkConfig{
+		Solver: Solution{},
+	})
 }

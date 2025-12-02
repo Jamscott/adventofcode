@@ -1,6 +1,7 @@
 package day1
 
 import (
+	"aoc2025/solver"
 	"aoc2025/utils"
 	"fmt"
 	"strconv"
@@ -8,6 +9,12 @@ import (
 
 	"golang.org/x/exp/constraints"
 )
+
+func init() {
+	solver.Register(1, Solution{})
+}
+
+type Solution struct{}
 
 func Mod[T constraints.Integer](n, m T) T {
 	if m == 0 {
@@ -23,27 +30,7 @@ func Mod[T constraints.Integer](n, m T) T {
 	return r
 }
 
-func Run() {
-	fmt.Println("Day 1")
-	input, err := utils.LoadInput("day1/input.txt")
-	if err != nil {
-		panic(fmt.Errorf("failed to load input: %w", err))
-	}
-
-	result, err := Part1(input)
-	if err != nil {
-		panic(fmt.Errorf("failed to run Part1: %w", err))
-	}
-	fmt.Printf("Part 1 Result: %d\n", result)
-
-	result, err = Part2(input)
-	if err != nil {
-		panic(fmt.Errorf("failed to run Part2: %w", err))
-	}
-	fmt.Printf("Part 2 Result: %d\n", result)
-}
-
-func Part1(input string) (int, error) {
+func (s Solution) Part1(input string) (int, error) {
 	lines := utils.NewLineSplit(input)
 
 	position := 50
@@ -75,7 +62,7 @@ func Part1(input string) (int, error) {
 	return count, nil
 }
 
-func Part2(input string) (int, error) {
+func (s Solution) Part2(input string) (int, error) {
 	lines := utils.NewLineSplit(input)
 
 	position := 50
