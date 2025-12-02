@@ -86,7 +86,7 @@ func (r *RunResult) Print(dayNumber int) {
 	fmt.Printf("\n=== Day %d ===\n", dayNumber)
 
 	if r.InputLoadErr != nil {
-		fmt.Printf("❌ Failed to load input: %v\n", r.InputLoadErr)
+		fmt.Printf("Failed to load input: %v\n", r.InputLoadErr)
 		return
 	}
 

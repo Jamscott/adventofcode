@@ -1,12 +1,11 @@
 package dayN
 
 import (
-	"aoc2025/solver"
 	"aoc2025/utils"
 )
 
 func init() {
-	solver.Register(N, Solution{})
+	// solver.Register(Solution, Solution{})
 }
 
 type Solution struct{}
