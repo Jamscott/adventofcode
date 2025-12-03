@@ -6,8 +6,6 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-
-	"golang.org/x/exp/constraints"
 )
 
 func init() {
@@ -15,20 +13,6 @@ func init() {
 }
 
 type Solution struct{}
-
-func Mod[T constraints.Integer](n, m T) T {
-	if m == 0 {
-		panic("modulo by zero")
-	}
-
-	r := n % m
-
-	if r < 0 {
-		r += m
-	}
-
-	return r
-}
 
 func (s Solution) Part1(input string) (int, error) {
 	lines := utils.NewLineSplit(input)
@@ -52,7 +36,7 @@ func (s Solution) Part1(input string) (int, error) {
 			distance *= -1
 		}
 
-		position = Mod(position+distance, 100)
+		position = utils.Mod(position+distance, 100)
 
 		if position == 0 {
 			count++

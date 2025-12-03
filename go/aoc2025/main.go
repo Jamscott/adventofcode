@@ -9,6 +9,7 @@ import (
 
 	_ "aoc2025/day1"
 	_ "aoc2025/day2"
+	_ "aoc2025/day3"
 )
 
 func main() {
@@ -16,10 +17,8 @@ func main() {
 	flag.Parse()
 
 	if *dayFlag == 0 {
-		// Run all registered days
 		runAllDays()
 	} else {
-		// Run specific day
 		runDay(*dayFlag)
 	}
 }
