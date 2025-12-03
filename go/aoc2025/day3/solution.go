@@ -3,8 +3,6 @@ package day3
 import (
 	"aoc2025/solver"
 	"aoc2025/utils"
-	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -34,11 +32,15 @@ func (s Solution) Part2(input string) (int, error) {
 func parseInput(input string) []string {
 	lines := utils.NewLineSplit(input)
 	result := make([]string, 0, len(lines))
+
 	for _, line := range lines {
+
 		if trimmed := strings.TrimSpace(line); trimmed != "" {
 			result = append(result, trimmed)
 		}
+
 	}
+
 	return result
 }
 
@@ -47,14 +49,7 @@ func (s Solution) solve(input string, digitCount int) (int, error) {
 	total := 0
 
 	for _, line := range lines {
-		output := buildMaxNumberFromDigits(line, digitCount)
-
-		joltage, err := strconv.Atoi(output)
-		if err != nil {
-			return 0, fmt.Errorf("failed to parse joltage: %w", err)
-		}
-
-		total += joltage
+		total += buildMaxNumberFromDigits(line, digitCount)
 	}
 
 	return total, nil
@@ -86,16 +81,20 @@ func findLargestDigitInRange(line string, from, to int) (digit int, position int
 	return max, index
 }
 
-func buildMaxNumberFromDigits(line string, numDigits int) string {
+func buildMaxNumberFromDigits(line string, numDigits int) int {
+	result := 0
 	lastIndex := -1
-	var joltage strings.Builder
-	joltage.Grow(numDigits)
 
-	for i := 1; i <= numDigits; i++ {
-		value, index := findLargestDigitInRange(line, lastIndex+1, numDigits-i)
-		joltage.WriteByte(byte(value + '0'))
+	for digitsRemaining := numDigits; digitsRemaining > 0; digitsRemaining-- {
+		digit, index := findLargestDigitInRange(line, lastIndex+1, digitsRemaining-1)
+
+		if digit == -1 {
+			digit = 0
+		}
+
+		result = result*10 + digit
 		lastIndex = index
 	}
 
-	return joltage.String()
+	return result
 }
