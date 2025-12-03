@@ -97,7 +97,7 @@ func hasRepeatingPattern(n int) bool {
 	return false
 }
 
-func sumMatchingNumbers(ranges []numRange, predicate func(int) bool) int {
+func (s Solution) solve(ranges []numRange, predicate func(int) bool) int {
 	sum := 0
 	for _, r := range ranges {
 		for i := r.min; i <= r.max; i++ {
@@ -111,10 +111,10 @@ func sumMatchingNumbers(ranges []numRange, predicate func(int) bool) int {
 
 func (s Solution) Part1(input string) (int, error) {
 	ranges := parseInput(input)
-	return sumMatchingNumbers(ranges, hasRepeatingHalves), nil
+	return s.solve(ranges, hasRepeatingHalves), nil
 }
 
 func (s Solution) Part2(input string) (int, error) {
 	ranges := parseInput(input)
-	return sumMatchingNumbers(ranges, hasRepeatingPattern), nil
+	return s.solve(ranges, hasRepeatingPattern), nil
 }

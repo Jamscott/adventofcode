@@ -34,11 +34,10 @@ func parseInput(input string) []string {
 	result := make([]string, 0, len(lines))
 
 	for _, line := range lines {
-
-		if trimmed := strings.TrimSpace(line); trimmed != "" {
-			result = append(result, trimmed)
+		line = strings.TrimSpace(line)
+		if line != "" {
+			result = append(result, line)
 		}
-
 	}
 
 	return result
