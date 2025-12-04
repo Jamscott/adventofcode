@@ -10,6 +10,7 @@ import (
 	_ "aoc2025/day1"
 	_ "aoc2025/day2"
 	_ "aoc2025/day3"
+	_ "aoc2025/day4"
 )
 
 func main() {
