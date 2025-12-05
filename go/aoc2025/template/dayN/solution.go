@@ -1,8 +1,6 @@
 package dayN
 
-import (
-	"aoc2025/utils"
-)
+import "strings"
 
 func init() {
 	// solver.Register(Solution, Solution{})
@@ -11,13 +9,13 @@ func init() {
 type Solution struct{}
 
 func (s Solution) Part1(input string) (int, error) {
-	lines := utils.NewLineSplit(input)
+	lines := strings.Split(input, "\n")
 	_ = lines
 	return 0, nil
 }
 
 func (s Solution) Part2(input string) (int, error) {
-	lines := utils.NewLineSplit(input)
+	lines := strings.Split(input, "\n")
 	_ = lines
 	return 0, nil
 }

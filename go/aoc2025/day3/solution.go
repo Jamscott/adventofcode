@@ -2,7 +2,6 @@ package day3
 
 import (
 	"aoc2025/solver"
-	"aoc2025/utils"
 	"strings"
 )
 
@@ -30,7 +29,7 @@ func (s Solution) Part2(input string) (int, error) {
 // [ "234234234234278" ]
 // [ "818181911112111" ]
 func parseInput(input string) []string {
-	lines := utils.NewLineSplit(input)
+	lines := strings.Split(input, "\n")
 	result := make([]string, 0, len(lines))
 
 	for _, line := range lines {

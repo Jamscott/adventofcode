@@ -8,51 +8,32 @@ func Mod[T constraints.Integer](n, m T) T {
 	}
 
 	r := n % m
-
 	if r < 0 {
 		r += m
 	}
-
 	return r
 }
 
-func MaxInt(nums ...int) int {
-	maxNum := nums[0]
-	for _, v := range nums {
-		if v > maxNum {
-			maxNum = v
-		}
+func Abs[T constraints.Integer | constraints.Float](n T) T {
+	if n < 0 {
+		return -n
 	}
-	return maxNum
+	return n
 }
 
-func MinInt(nums ...int) int {
-	minNum := nums[0]
-	for _, v := range nums {
-		if v < minNum {
-			minNum = v
-		}
-	}
-	return minNum
-}
-
-func AbsInt(in int) int {
-	if in < 0 {
-		return -in
-	}
-	return in
-}
-
-func SumIntSlice(nums []int) int {
-	var sum int
+func Sum[T constraints.Integer | constraints.Float](nums []T) T {
+	var sum T
 	for _, n := range nums {
 		sum += n
 	}
 	return sum
 }
 
-func MultiplyIntSlice(nums []int) int {
-	product := 1
+func Product[T constraints.Integer | constraints.Float](nums []T) T {
+	if len(nums) == 0 {
+		return 0
+	}
+	product := T(1)
 	for _, n := range nums {
 		product *= n
 	}

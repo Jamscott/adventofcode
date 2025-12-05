@@ -11,21 +11,21 @@ type Grid [][]rune
 
 var (
 	DirectionsCardinal = []Position{
-		{X: 0, Y: -1}, // North
-		{X: 1, Y: 0},  // East
-		{X: 0, Y: 1},  // South
-		{X: -1, Y: 0}, // West
+		{X: 0, Y: -1},
+		{X: 1, Y: 0},
+		{X: 0, Y: 1},
+		{X: -1, Y: 0},
 	}
 
 	DirectionsAll = []Position{
-		{X: -1, Y: -1}, // NW
-		{X: 0, Y: -1},  // N
-		{X: 1, Y: -1},  // NE
-		{X: 1, Y: 0},   // E
-		{X: 1, Y: 1},   // SE
-		{X: 0, Y: 1},   // S
-		{X: -1, Y: 1},  // SW
-		{X: -1, Y: 0},  // W
+		{X: -1, Y: -1},
+		{X: 0, Y: -1},
+		{X: 1, Y: -1},
+		{X: 1, Y: 0},
+		{X: 1, Y: 1},
+		{X: 0, Y: 1},
+		{X: -1, Y: 1},
+		{X: -1, Y: 0},
 	}
 )
 
