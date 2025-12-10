@@ -71,5 +71,6 @@ func mergeTotalLength(ranges utils.RangeSet[int64]) int64 {
 			prevEnd = r.End
 		}
 	}
+
 	return total
 }

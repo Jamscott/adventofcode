@@ -7,6 +7,38 @@ type Position struct {
 	Y int
 }
 
+func (p Position) Add(other Position) Position {
+	return Position{X: p.X + other.X, Y: p.Y + other.Y}
+}
+
+func (p Position) Sub(other Position) Position {
+	return Position{X: p.X - other.X, Y: p.Y - other.Y}
+}
+
+func (p Position) ManhattanDistance(other Position) int {
+	dx := p.X - other.X
+	dy := p.Y - other.Y
+	if dx < 0 {
+		dx = -dx
+	}
+	if dy < 0 {
+		dy = -dy
+	}
+	return dx + dy
+}
+
+func (p Position) RectArea(other Position) int {
+	w := p.X - other.X
+	h := p.Y - other.Y
+	if w < 0 {
+		w = -w
+	}
+	if h < 0 {
+		h = -h
+	}
+	return (w + 1) * (h + 1)
+}
+
 type Grid [][]rune
 
 var (
@@ -130,4 +162,19 @@ func (g Grid) FindAll(predicate func(rune) bool) []Position {
 		}
 	}
 	return positions
+}
+
+func (g Grid) FindFirst(predicate func(rune) bool) Position {
+	for y, row := range g {
+		for x, cell := range row {
+			if predicate(cell) {
+				return Position{X: x, Y: y}
+			}
+		}
+	}
+	return Position{X: -1, Y: -1}
+}
+
+func (g Grid) FindRune(target rune) Position {
+	return g.FindFirst(func(r rune) bool { return r == target })
 }

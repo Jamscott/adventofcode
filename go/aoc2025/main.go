@@ -8,10 +8,15 @@ import (
 	"os"
 
 	_ "aoc2025/day1"
+	_ "aoc2025/day10"
 	_ "aoc2025/day2"
 	_ "aoc2025/day3"
 	_ "aoc2025/day4"
 	_ "aoc2025/day5"
+	_ "aoc2025/day6"
+	_ "aoc2025/day7"
+	_ "aoc2025/day8"
+	_ "aoc2025/day9"
 )
 
 func main() {
