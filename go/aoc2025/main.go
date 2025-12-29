@@ -9,6 +9,8 @@ import (
 
 	_ "aoc2025/day1"
 	_ "aoc2025/day10"
+	_ "aoc2025/day11"
+	_ "aoc2025/day12"
 	_ "aoc2025/day2"
 	_ "aoc2025/day3"
 	_ "aoc2025/day4"

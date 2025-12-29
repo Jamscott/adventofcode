@@ -14,9 +14,10 @@ func init() {
 type Solution struct{}
 
 type Machine struct {
-	indicators int
-	buttons    []int
-	joltages   []int
+	indicators    int
+	buttons       []int
+	buttonIndices [][]int
+	joltages      []int
 }
 
 func parseInput(input string) []Machine {
@@ -57,10 +58,19 @@ func parseLine(line string) Machine {
 	indicatorBitmask, _ := strconv.ParseInt(indicatorString, 2, 64)
 
 	var buttonBitmasks []int
+	var buttonIndicesList [][]int
+	var joltages []int
+
 	for partIndex := 1; partIndex < len(parts); partIndex++ {
 		part := parts[partIndex]
 
 		if strings.HasPrefix(part, "{") {
+			joltageString := strings.Trim(part, "{}")
+			joltageStrings := strings.Split(joltageString, ",")
+			for _, joltStr := range joltageStrings {
+				jolt, _ := strconv.Atoi(strings.TrimSpace(joltStr))
+				joltages = append(joltages, jolt)
+			}
 			break
 		}
 
@@ -69,6 +79,7 @@ func parseLine(line string) Machine {
 
 		buttonBitmask := 0
 		indicatorLength := len(indicatorString)
+		var indices []int
 
 		for _, indexString := range buttonIndicesStrings {
 			indicatorIndex, err := strconv.Atoi(strings.TrimSpace(indexString))
@@ -78,14 +89,18 @@ func parseLine(line string) Machine {
 
 			bitPosition := indicatorLength - 1 - indicatorIndex
 			buttonBitmask |= (1 << bitPosition)
+			indices = append(indices, indicatorIndex)
 		}
 
 		buttonBitmasks = append(buttonBitmasks, buttonBitmask)
+		buttonIndicesList = append(buttonIndicesList, indices)
 	}
 
 	return Machine{
-		indicators: int(indicatorBitmask),
-		buttons:    buttonBitmasks,
+		indicators:    int(indicatorBitmask),
+		buttons:       buttonBitmasks,
+		buttonIndices: buttonIndicesList,
+		joltages:      joltages,
 	}
 }
 
@@ -114,5 +129,5 @@ func (s Solution) Part1(input string) (int, error) {
 }
 
 func (s Solution) Part2(input string) (int, error) {
-	return -1, nil
+	return 0, nil
 }
